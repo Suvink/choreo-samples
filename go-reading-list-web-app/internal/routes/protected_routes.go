@@ -22,6 +22,7 @@ import (
 	"encoding/json"
 	"go-reading-list-web-app/internal/config"
 	"go-reading-list-web-app/internal/service"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -48,6 +49,8 @@ func handleDashboard(s *service.Service) gin.HandlerFunc {
 		// read userClaims from the request
 		var user config.User
 		userClaims := c.Request.Header.Get("Choreo-User-Claims")
+		// print user claims
+		log.Println("User Claims: ", userClaims)
 		if err := json.Unmarshal([]byte(userClaims), &user); err != nil {
 			SendErrorResponse(c, config.ErrorResponse{
 				Code:    "401",
