@@ -48,9 +48,17 @@ func handleDashboard(s *service.Service) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// read userClaims from the request
 		var user config.User
+		// Log all the headers
+
+		for name, values := range c.Request.Header {
+			for _, value := range values {
+				log.Printf("%s: %s\n", name, value)
+			}
+		}
+
 		userClaims := c.Request.Header.Get("Choreo-User-Claims")
-		// print user claims
 		log.Println("User Claims: ", userClaims)
+
 		if err := json.Unmarshal([]byte(userClaims), &user); err != nil {
 			SendErrorResponse(c, config.ErrorResponse{
 				Code:    "401",
