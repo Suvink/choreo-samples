@@ -15,7 +15,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
+
 package service
 
 import (
@@ -57,14 +57,9 @@ func (s *Service) FetchBooks(accessToken string) ([]config.Book, error) {
 		return nil, fmt.Errorf("failed to fetch books: %s", resp.Status)
 	}
 
-	var booksMap map[string]config.Book
-	if err := json.NewDecoder(resp.Body).Decode(&booksMap); err != nil {
+	var books []config.Book
+	if err := json.NewDecoder(resp.Body).Decode(&books); err != nil {
 		return nil, err
-	}
-
-	books := make([]config.Book, 0, len(booksMap))
-	for _, book := range booksMap {
-		books = append(books, book)
 	}
 
 	return books, nil
@@ -112,7 +107,7 @@ func (s Service) DeleteBook(accessToken string, bookId string) error {
 		return err
 	}
 	defer resp.Body.Close()
-	
+
 	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("failed to delete book: %s", resp.Status)
 	}
