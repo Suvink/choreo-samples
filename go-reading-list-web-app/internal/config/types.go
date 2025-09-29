@@ -15,7 +15,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- 
+
 package config
 
 type EnvConfig struct {
@@ -25,7 +25,7 @@ type EnvConfig struct {
 
 // Book represents a book in the reading list
 type Book struct {
-	Id     string `json:"uuid"`
+	Id     string `json:"id"`
 	Title  string `json:"title"`
 	Author string `json:"author"`
 	Status string `json:"status"`
@@ -34,14 +34,14 @@ type Book struct {
 // User represents a user in the system.
 // This implementation uses a minimal set of fields for demonstration purposes
 type User struct {
-	Username string `json:"username"`
-	Email    string `json:"email"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Groups    []string `json:"groups"`
+	Username     string       `json:"username"`
+	Email        string       `json:"email"`
+	FirstName    string       `json:"first_name"`
+	LastName     string       `json:"last_name"`
+	Groups       []string     `json:"groups"`
 	Organization Organization `json:"organization"`
-	Issuer    string `json:"iss"`
-	Subject   string `json:"sub"`
+	Issuer       string       `json:"iss"`
+	Subject      string       `json:"sub"`
 }
 
 type Organization struct {
