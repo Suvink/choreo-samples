@@ -3,6 +3,7 @@ info:
   title: Greeting Service
   version: 1.0.0
 security: []
+x-wso2-disable-security: true
 paths:
   /greeter/greet:
     get:
